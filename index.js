@@ -33,6 +33,10 @@ function countCart() {
     const plusBtn = document.getElementById('plus-button');
     const minusBtn = document.getElementById('minus-button');
     const counter = document.getElementById('product-counter');
+    const cartCounter = document.getElementById('cart-counter');
+    const addBtn = document.getElementById('add-button');
+    const productRundown = document.getElementById('product-rundown');
+    const deleteBtn = document.getElementById('delete-button');
 
     let count = 0;
     plusBtn.addEventListener('click', () => {
@@ -41,8 +45,32 @@ function countCart() {
     })
 
     minusBtn.addEventListener('click', () => {
-        count -= 1
+        if (count > 0) {
+            count -= 1;
+        } else {
+            count = 0;
+        }
         counter.innerText = `${count}`;
+    })
+
+    addBtn.addEventListener('click', () => {
+        if (count === 0) {
+            cartCounter.style.display = 'none';
+        } else {
+            cartCounter.style.display = 'flex';
+            cartCounter.innerText = `${count}`;
+            productRundown.innerHTML = `
+            <img src="./images/image-product-1-thumbnail.jpg" alt="">
+          <div class="cart-product">
+            <p class="product-name">Fall limited edition sneakers</p>
+            <p>$125 x ${count} <b>$${count * 125}</b></p>
+          </div>
+          <button class="delete-button" id="delete-button" onclick="deleteCart()">
+            <svg width="14" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M0 2.625V1.75C0 1.334.334 1 .75 1h3.5l.294-.584A.741.741 0 0 1 5.213 0h3.571a.75.75 0 0 1 .672.416L9.75 1h3.5c.416 0 .75.334.75.75v.875a.376.376 0 0 1-.375.375H.375A.376.376 0 0 1 0 2.625Zm13 1.75V14.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 14.5V4.375C1 4.169 1.169 4 1.375 4h11.25c.206 0 .375.169.375.375ZM4.5 6.5c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Z" id="a"/></defs><use fill="#C3CAD9" fill-rule="nonzero" xlink:href="#a"/></svg>
+          </button>
+            ` 
+        }
+
     })
 
 }
@@ -61,7 +89,7 @@ function toggleMobMenu() {
     })
 
     closeIcon.addEventListener('click', () => {
-        mobileMenu.style.display = 'none';;
+        mobileMenu.style.display = 'none';
     })
 }
 
@@ -91,3 +119,32 @@ function showSlides(n) {
     }
     slides[slideIndex-1].style.display = "block";
 }
+
+// Show/Hide cart
+
+function toggleCart() {
+    const cartBtn = document.getElementById('cart-button');
+    const cart = document.getElementById('cart-container');
+
+    cartBtn.addEventListener('click', () => {
+        cart.classList.toggle('active');
+    })
+}
+
+toggleCart();
+
+// Reset Cart 
+
+function deleteCart() {
+    const deleteBtn = document.getElementById('delete-button');
+    const productRundown = document.getElementById('product-rundown');
+    const cartCounter = document.getElementById('cart-counter');
+
+    deleteBtn.addEventListener('click', () => {
+        productRundown.innerHTML = `<p>Your cart is empty</p>`;
+        cartCounter.style.display = 'none';
+    })
+}
+
+deleteCart()
+
