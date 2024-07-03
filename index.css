@@ -147,6 +147,7 @@ header {
 }
 
 .carousel-container {
+    display: block;
     width: 100%;
 }
 
@@ -398,6 +399,7 @@ main {
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 15px;
     font-size: 0.9rem;
     font-weight: 600;

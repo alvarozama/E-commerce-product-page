@@ -9,23 +9,36 @@ function changeImages() {
     const thmb4 = document.getElementById('thumbnail-4');
 
     thmb1.addEventListener('click', () => {
-        mainPhoto.innerHTML = '<img src="./images/image-product-1.jpg" alt="">';
+        mainPhoto.innerHTML = '<img src="./images/image-product-1.jpg" alt="Fall limited edition sneakers 1">';
     })
 
     thmb2.addEventListener('click', () => {
-        mainPhoto.innerHTML = '<img src="./images/image-product-2.jpg" alt="">'
+        mainPhoto.innerHTML = '<img src="./images/image-product-2.jpg" alt="Fall limited edition sneakers 2">'
     })
 
     thmb3.addEventListener('click', () => {
-        mainPhoto.innerHTML = '<img src="./images/image-product-3.jpg" alt="">'
+        mainPhoto.innerHTML = '<img src="./images/image-product-3.jpg" alt="Fall limited edition sneakers 3">'
     })
 
     thmb4.addEventListener('click', () => {
-        mainPhoto.innerHTML = '<img src="./images/image-product-4.jpg" alt="">'
+        mainPhoto.innerHTML = '<img src="./images/image-product-4.jpg" alt="Fall limited edition sneakers 4">'
     })
 }
 
 changeImages();
+
+// Reset Cart 
+
+function deleteCart() {
+    const deleteBtn = document.getElementById('delete-button');
+    const productRundown = document.getElementById('product-rundown');
+    const cartCounter = document.getElementById('cart-counter');
+
+    deleteBtn.addEventListener('click', () => {
+        productRundown.innerHTML = `<p>Your cart is empty</p>`;
+        cartCounter.style.display = 'none';
+    })
+}
 
 // Change value of counter
 
@@ -60,12 +73,12 @@ function countCart() {
             cartCounter.style.display = 'flex';
             cartCounter.innerText = `${count}`;
             productRundown.innerHTML = `
-            <img src="./images/image-product-1-thumbnail.jpg" alt="">
+            <img src="./images/image-product-1-thumbnail.jpg" alt="Fall limited editio sneakers 1">
           <div class="cart-product">
             <p class="product-name">Fall limited edition sneakers</p>
             <p>$125 x ${count} <b>$${count * 125}</b></p>
           </div>
-          <button class="delete-button" id="delete-button" onclick="deleteCart()">
+          <button class="delete-button" id="delete-button" onclick="deleteCart()" aria-label="delete items from cart">
             <svg width="14" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M0 2.625V1.75C0 1.334.334 1 .75 1h3.5l.294-.584A.741.741 0 0 1 5.213 0h3.571a.75.75 0 0 1 .672.416L9.75 1h3.5c.416 0 .75.334.75.75v.875a.376.376 0 0 1-.375.375H.375A.376.376 0 0 1 0 2.625Zm13 1.75V14.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 14.5V4.375C1 4.169 1.169 4 1.375 4h11.25c.206 0 .375.169.375.375ZM4.5 6.5c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Z" id="a"/></defs><use fill="#C3CAD9" fill-rule="nonzero" xlink:href="#a"/></svg>
           </button>
             ` 
@@ -133,7 +146,7 @@ function showSlides(n) {
       }
 
     slides[slideIndex-1].style.display = "block";
-    
+
     thumbnails[slideIndex-1].className += " active";
 }
 
@@ -149,21 +162,6 @@ function toggleCart() {
 }
 
 toggleCart();
-
-// Reset Cart 
-
-function deleteCart() {
-    const deleteBtn = document.getElementById('delete-button');
-    const productRundown = document.getElementById('product-rundown');
-    const cartCounter = document.getElementById('cart-counter');
-
-    deleteBtn.addEventListener('click', () => {
-        productRundown.innerHTML = `<p>Your cart is empty</p>`;
-        cartCounter.style.display = 'none';
-    })
-}
-
-deleteCart()
 
 // open modal
 
