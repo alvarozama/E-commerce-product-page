@@ -105,9 +105,19 @@ function plusSlides(n) {
     showSlides(slideIndex += n);
   }
 
+// thumbnail controls
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+// show slides
+
 function showSlides(n) {
     let i;
     let slides = document.getElementsByClassName("my-slides");
+    var thumbnails = document.getElementsByClassName("carousel-thumbnail");
+
     if (n > slides.length) {
         slideIndex = 1
     }
@@ -117,7 +127,14 @@ function showSlides(n) {
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
+
+    for (i = 0; i < thumbnails.length; i++) {
+        thumbnails[i].className = thumbnails[i].className.replace(" active", "");
+      }
+
     slides[slideIndex-1].style.display = "block";
+    
+    thumbnails[slideIndex-1].className += " active";
 }
 
 // Show/Hide cart
@@ -147,4 +164,17 @@ function deleteCart() {
 }
 
 deleteCart()
+
+// open modal
+
+function openModal() {
+    document.getElementById('carousel-container').style.display = 'block';
+}
+
+// close modal 
+
+function closeModal() {
+    document.getElementById('carousel-container').style.display = 'none';
+}
+
 
